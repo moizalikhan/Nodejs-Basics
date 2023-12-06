@@ -6,7 +6,28 @@ const server = http.createServer((req,res)=> {
     //set header
     res.setHeader('content-type', 'text/html');
     // res.write('<p>Moizali</p>');
-    file_system.readFile('./docs/index.html',(err,data) =>{
+
+    let path = './docs/';
+    switch(req.url){
+        case '/':
+            path += 'School.html';
+            res.statusCode = 200
+            break;
+        case '/college':
+            path += 'College.html';
+            res.statusCode = 200
+            break;
+        case '/university':
+            path +='University.html';
+            res.statusCode = 200
+            break;
+
+        default:'Home.html';
+        res.statusCode = 404;
+        break;
+    }
+
+    file_system.readFile(path,(err,data) =>{
         if(err){
             console.log(err);
             res.end();
