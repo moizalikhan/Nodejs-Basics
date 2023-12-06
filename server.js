@@ -7,22 +7,32 @@ const server = http.createServer((req,res)=> {
     res.setHeader('content-type', 'text/html');
     // res.write('<p>Moizali</p>');
 
+    //Routing
     let path = './docs/';
     switch(req.url){
         case '/':
             path += 'School.html';
             res.statusCode = 200
             break;
+
         case '/college':
             path += 'College.html';
             res.statusCode = 200
             break;
+    //redirect
+        case '/college-year':
+            res.statusCode = 301;
+            res.setHeader('location','/college');
+            res.end();
+            break;
+
         case '/university':
             path +='University.html';
             res.statusCode = 200
             break;
 
-        default:'Home.html';
+        default:
+        path +='Home.html';
         res.statusCode = 404;
         break;
     }
