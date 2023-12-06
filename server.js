@@ -1,11 +1,23 @@
 const http = require('http');
 const file_system = require('fs');
+const _ = require('lodash');
 
 const server = http.createServer((req,res)=> {
-    console.log(req.url, req.method);
+    // console.log(req.url, req.method);
+    const number = _.random(10,20);
+    console.log(number);
+
+    const greeting = _.once(()=>{
+        console.log('hello my world');
+    });
+    
+    greeting();
+    greeting();
+
     //set header
     res.setHeader('content-type', 'text/html');
     // res.write('<p>Moizali</p>');
+
 
     //Routing
     let path = './docs/';
